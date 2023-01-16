@@ -7,8 +7,8 @@ import Navbar from './Shared/Navbar';
 function App() {
   return (
     <div>
-      <div>
-        <Navbar/>
+      <Navbar/>
+      <div className='container'>
         <Routes>
           <Route path="/" element={<Markets/>}></Route>
           <Route path='/portfolio' element={<Portfolio/>}></Route>
