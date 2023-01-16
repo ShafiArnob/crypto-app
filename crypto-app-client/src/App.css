@@ -38,3 +38,58 @@ body{
   text-decoration: none;
   color: white;
 }
+
+/** ::::: MarketList ::::: */
+.market-list{
+  margin: 1rem;
+}
+.market-list--title, .market-list--row{
+  display: flex;
+  justify-content: space-between;
+}
+.market-list--title{
+  background-color: var(--navbar-bg);
+}
+.market-list--title p, .market-list--row p{
+  font-size: 1rem;
+  width: 6rem;
+  /* background-color: aqua; */
+}
+.market-list--row{
+  border: 1px solid rgb(107, 107, 107);
+  margin: 1rem 0;
+  padding: 0.5rem 0;
+}
+.list-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.list-item p{
+  font-size: .8rem;
+}
+.coin{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aqua; */
+  width: 10px;
+}
+.coin p{
+  text-align: center;
+}
+.coin-image{
+  width: 26px;
+}
+
+
+
+
+
+
+
+
+
+
+
