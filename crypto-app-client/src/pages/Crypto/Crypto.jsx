@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { mockCoinData } from '../../utils/constants/mock'
-
+import {AiFillCaretDown, AiFillCaretUp} from 'react-icons/ai'
 const Crypto = () => {
   const [coinData, setCoinData] = useState(mockCoinData)
   console.log(coinData);
@@ -17,7 +17,23 @@ const Crypto = () => {
       
       {/* Time percentage info */}
       <div className='time-percentage-info'>
-
+        <div className='time-period'>
+          <span>24H</span>
+          <span>7D</span>
+          <span>14D</span>
+          <span>30D</span>
+          <span>60D</span>
+          <span>1Y</span>
+        </div>
+        <hr />
+        <div className='time-period-data'>
+          <span className={coinData.market_data.price_change_percentage_24h < 0 ? "red" : "green" }>{coinData.market_data.price_change_percentage_24h < 0 ? <AiFillCaretDown/>:<AiFillCaretUp/>}{Math.abs(coinData.market_data.price_change_percentage_24h.toFixed(2))}%</span>
+          <span className={coinData.market_data.price_change_percentage_7d < 0 ? "red" : "green" }>{coinData.market_data.price_change_percentage_7d < 0 ? <AiFillCaretDown/>:<AiFillCaretUp/>}{Math.abs(coinData.market_data.price_change_percentage_7d.toFixed(2))}%</span>
+          <span className={coinData.market_data.price_change_percentage_14d < 0 ? "red" : "green" }>{coinData.market_data.price_change_percentage_14d < 0 ? <AiFillCaretDown/>:<AiFillCaretUp/>}{Math.abs(coinData.market_data.price_change_percentage_14d.toFixed(2))}%</span>
+          <span className={coinData.market_data.price_change_percentage_30d < 0 ? "red" : "green" }>{coinData.market_data.price_change_percentage_30d < 0 ? <AiFillCaretDown/>:<AiFillCaretUp/>}{Math.abs(coinData.market_data.price_change_percentage_30d.toFixed(2))}%</span>
+          <span className={coinData.market_data.price_change_percentage_60d < 0 ? "red" : "green" }>{coinData.market_data.price_change_percentage_60d < 0 ? <AiFillCaretDown/>:<AiFillCaretUp/>}{Math.abs(coinData.market_data.price_change_percentage_60d.toFixed(2))}%</span>
+          <span className={coinData.market_data.price_change_percentage_1y < 0 ? "red" : "green" }>{coinData.market_data.price_change_percentage_1y < 0 ?<AiFillCaretDown/>:<AiFillCaretUp/>}{Math.abs(coinData.market_data.price_change_percentage_1y.toFixed(2))}%</span>
+        </div>
       </div>
 
       <div className='crypto-info--description'>

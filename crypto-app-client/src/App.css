@@ -22,6 +22,12 @@ body{
   max-width: var(--container-width-max);
   margin: 0 auto;
 }
+.red{
+  color: rgb(255, 73, 73);
+}
+.green{
+  color: rgb(51, 255, 51);
+}
 /** ::::: Navbar ::::: */
 .navbar{
   display: flex;
@@ -103,9 +109,6 @@ body{
 
 
 /** ::::: Crypto ::::: */
-
-
-/* info description */
 .crypto-info{
   display: flex;
   flex-direction: column;
@@ -113,12 +116,32 @@ body{
   align-items: center;
   margin: 1rem;
 }
+/* time percentage info */
+.time-percentage-info{
+  background-color: var(--background-secondary);
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+}
+hr{
+  opacity: 60%;
+  border: 1px solid var(--navbar-bg);
+}
+.time-period, .time-period-data{
+  display: flex;
+  justify-content: space-around;
+  padding: .3rem 0;
+}
+.time-period-data{
+  font-size: 0.9rem;
+}
+/* info description */
 .crypto-info--description{
   background-color: var(--background-secondary);
   margin: 1rem;
   padding: 1rem;
   border-radius: 8px;
-  width: 95%;
+  width: 100%;
 }
 .description-cell{
   border-bottom: 1px solid rgb(85, 85, 85);
@@ -139,3 +162,7 @@ body{
 
 
 
+/* For mobile phones: */
+@media only screen and (max-width: 768px) {
+
+}
