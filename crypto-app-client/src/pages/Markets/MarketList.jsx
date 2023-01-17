@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const MarketList = ({marketList}) => {
   return (
@@ -12,16 +13,19 @@ const MarketList = ({marketList}) => {
       </div>
       {
         marketList.map(coin=>(
-          <div className='market-list--row' key={coin.id}>
-            {/* <p className='list-item'>{coin.market_cap_rank}</p> */}
-            <p className='coin'>
-              <img className='coin-image' src={coin.image} alt="img" />
-              <p>{coin.name}</p>
-            </p>
-            <p className='list-item'>{coin.current_price}</p>
-            <p className='list-item'>{coin.price_change_percentage_24h.toFixed(2)}</p>
-            <p className='list-item'>{coin.market_cap}</p>
-          </div>))
+          <Link to={`coins/${coin.id}`} key={coin.id}>        
+            <div className='market-list--row' >
+              {/* <p className='list-item'>{coin.market_cap_rank}</p> */}
+              <div className='coin'>
+                <img className='coin-image' src={coin.image} alt="img" />
+                <p>{coin.symbol.toUpperCase()}</p>
+              </div>
+              <p className='list-item'>{coin.current_price}</p>
+              <p className='list-item'>{coin.price_change_percentage_24h.toFixed(2)}</p>
+              <p className='list-item'>{coin.market_cap}</p>
+            </div>
+          </Link>
+        ))
       }
     </div>
   )

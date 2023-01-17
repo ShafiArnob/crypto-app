@@ -13,3 +13,7 @@ export const fetchMarketList = async () =>{
   }
   return await response.json()
 }
+
+export const coinData = async () =>{
+  
+}

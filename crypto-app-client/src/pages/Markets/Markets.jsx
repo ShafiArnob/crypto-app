@@ -19,7 +19,7 @@ const Markets = () => {
     }
     // updatemarketList()
   }, [])
-  console.log(marketList);
+  // console.log(marketList);
   return (
     <div className='' style={{backgroundColor:""}}>
       <MarketList marketList={marketList}/>
