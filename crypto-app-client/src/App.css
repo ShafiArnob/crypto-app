@@ -158,9 +158,31 @@ hr{
 
 }
 
-
-
-
+.price-info{
+  background-color: var(--background-secondary);
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.6rem;
+  border-radius: 8px;
+}
+.price-info--header{
+  margin: 0.2rem 0.6rem;
+  color: #d5d5d5;
+}
+.price-info--title{
+  display: flex;
+  align-items: center;
+}
+.price-info--title img{
+  margin-right: 0.5rem ;
+}
+.price-info--value{
+  display: flex;
+  align-items: center;
+}
+.price-info--value span{
+  margin-left: 0.5rem;
+}
 
 /* For mobile phones: */
 @media only screen and (max-width: 768px) {

@@ -65,20 +65,37 @@ const Crypto = () => {
   return (
     <div className="crypto-info">
       {/* Price Info */}
-      <div></div>
-      {/* For Chart */}
-      <div style={{ width: '100%', height: 300 }}>
-        <ResponsiveContainer >
-          <AreaChart data={priceData}
-            margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
-            <XAxis dataKey={"date"} />
-            <YAxis domain={["dataMin", "dataMax"]} />
-            <Tooltip />
-            <Area type="monotone" dataKey="value" stroke="#5c459c" fill="#5c459c" />
-          </AreaChart>
-        </ResponsiveContainer>
+      <div className='price-info'>
+        <div className='price-info--header'>
+          <div className='price-info--title'>
+            <img src={coinData.image.thumb} alt="" />
+            <h2>{coinData.name}({coinData.symbol.toUpperCase()})</h2>
+          </div>
+          <div className={`price-info--value`}>
+            <h1>${coinData.market_data.current_price.usd}</h1>
+            <span className={`${coinData.market_data.price_change_percentage_7d < 0 ? "red" : "green"}`}>{coinData.market_data.price_change_percentage_24h < 0 ? (<AiFillCaretDown/>) : (<AiFillCaretUp />)}{Math.abs(
+              coinData.market_data.price_change_percentage_24h.toFixed(2)
+            )}%</span>
+          </div>
+        </div>
+        {/* For Chart */}
+        <div style={{ width: '100%', height: 300 }}>
+          <ResponsiveContainer >
+            <AreaChart data={priceData} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
+            <defs>
+              <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#5c459c" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#5c459c" stopOpacity={0}/>
+              </linearGradient>
+            </defs>
+              <XAxis dataKey={"date"} />
+              <YAxis domain={["dataMin", "dataMax"]} />
+              <Tooltip />
+              <Area type="monotone" dataKey="value" stroke="#5c459c" fillOpacity={1} strokeWidth={0.9} fill="url(#chartColor)" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
       </div>
-
       {/* Time percentage info */}
       <div className="time-percentage-info">
         <div className="time-period">
