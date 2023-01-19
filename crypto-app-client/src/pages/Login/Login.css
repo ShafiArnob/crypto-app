@@ -1,0 +1,25 @@
+:root{
+  --navbar-bg: #5c459c;
+
+  --background-primary:#212121;
+  --background-secondary:#383838;
+
+  --container-width-max: 800px;
+}
+.login-page{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 92vh;
+  /* background-color: brown; */
+}
+.login-form{
+  background-color: var(--background-secondary);
+}
+.login-form h2{
+  padding: 1.5rem;
+  text-align: center;
+}
+.login-form form{
+  padding: 1rem;
+}
