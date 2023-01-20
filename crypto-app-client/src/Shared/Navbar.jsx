@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <div className='navbar'>
       <div>
-        <Link to='/' style={{"color":"white","textDecoration":"none"}}><h1 className='navbar-title'>Block</h1></Link>
+        <Link to='/' style={{"color":"white","textDecoration":"none"}}><h2 className='navbar-title'>Block</h2></Link>
       </div>
       <ul>
         <li><Link to="/">Market</Link></li>
