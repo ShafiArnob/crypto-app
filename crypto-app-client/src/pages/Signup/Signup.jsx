@@ -1,25 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { projectAuth } from '../../firebase/config';
+import { async } from '@firebase/util';
 
 const Signup = () => {
+  const [ createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(projectAuth);
+  const [updateProfile] = useUpdateProfile(projectAuth);
+
+  const [username, setUserName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = async(e) =>{
+    e.preventDefault()
+    const res = await createUserWithEmailAndPassword(email, password)
+    const success = await updateProfile({displayName:username})
+  } 
+  console.log(error);
   return (
     <div className='login-page'>
       <div className='login-form'>
         <h2>Signup</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <p>Username: </p>
-            <input type="email" name="email" id="email" />
+            <input onChange={(e)=>setUserName(e.target.value)} value={username} type="text" name="email" id="username" />
           </div>
 
           <div>
             <p>Email: </p>
-            <input type="email" name="email" id="email" />
+            <input onChange={(e)=>setEmail(e.target.value)} value={email} type="email" name="email" id="email" />
           </div>
 
           <div>
             <p>Password: </p>
-            <input type="password" name="password" id="password" />
+            <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" name="password" id="password" />
           </div>
           <button>Signup</button>
         </form>
