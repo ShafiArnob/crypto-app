@@ -17,7 +17,6 @@ const Signup = () => {
     const res = await createUserWithEmailAndPassword(email, password)
     const success = await updateProfile({displayName:username})
   } 
-  console.log(error);
   return (
     <div className='login-page'>
       <div className='login-form'>
