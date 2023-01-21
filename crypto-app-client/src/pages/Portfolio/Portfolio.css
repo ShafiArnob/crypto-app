@@ -1,0 +1,36 @@
+:root{
+  --navbar-bg: #5c459c;
+
+  --background-primary:#212121;
+  --background-secondary:#272727;
+
+  --container-width-max: 800px;
+}
+.assets{
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  background-color: var(--background-secondary);
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+.assets-title{
+  padding: 0.2rem 0;
+  color: rgb(141, 141, 141);
+  font-size: 0.8rem;
+}
+.assets-title, .assets-value{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+.assets-value{
+  margin: 0.5rem 0;
+  padding: 0.5rem 0.3rem;
+  border-radius: 8px;
+}
+.assets-value:hover{
+  background-color: #9772fc24;
+  cursor: pointer;
+}
