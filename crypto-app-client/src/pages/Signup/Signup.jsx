@@ -18,14 +18,16 @@ const Signup = () => {
     const res = await createUserWithEmailAndPassword(email, password)
     const success = await updateProfile({displayName:username})
     const data = {
-      id:res.user.uid,
+      uid:res.user.uid,
+      email:res.user.email,
       username:username,
       portfolio:{}
     }
     console.log(res);
     console.log("payload", data);
     if(success){
-      axios.post('http://localhost:5000/users',data)
+      var response_server = await axios.post('http://localhost:5000/users',data)
+      console.log(response_server);
     }
   } 
   return (
