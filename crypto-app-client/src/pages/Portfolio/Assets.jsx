@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+import AddAssetModal from './AddAssetModal'
 import './Portfolio.css'
 const Assets = () => {
+  const [openModal, setopenModal] = useState(false)
   return (
     <div className='assets'>
       <h4>Your Assets</h4>
@@ -25,7 +27,8 @@ const Assets = () => {
         </div>
       </div>
       <hr className='asset-divide'/>
-      <button>Add New Asset</button>
+      <button onClick={()=>setopenModal(!openModal)}>Add New Asset</button>
+      <AddAssetModal openModal={openModal} setopenModal={setopenModal}/>
     </div>
   )
 }
