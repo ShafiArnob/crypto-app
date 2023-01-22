@@ -4,8 +4,9 @@ import {IoMdClose} from 'react-icons/io'
 import { mockMarketList } from '../../utils/constants/mock'
 import { useState } from 'react'
 const AddAssetModal = ({openModal, setopenModal}) => {
+  const [transactionType,setTransactionType] = useState('buy')
   const [selecCoin, setSelecCoin] = useState('')
-  console.log(selecCoin);
+  // console.log(transactionType);
   return (
     <Modal className="Modal" overlayClassName="Overlay" isOpen={openModal} onRequestClose ={()=>setopenModal(!openModal)} ariaHideApp={false}>
       {/* Modal Header */}
@@ -15,8 +16,11 @@ const AddAssetModal = ({openModal, setopenModal}) => {
       </div>
       {/*Modal Body */}
       <div className='modal-body'>
+        <div className='transaction-type'>
+          <p onClick={(e)=>setTransactionType(e.target.id)} className={transactionType==="buy"?"active":null} id="buy">Buy</p>
+          <p onClick={(e)=>setTransactionType(e.target.id)} className={transactionType==="sell"?"active":null} id="sell">Sell</p>
+        </div>
         <div className='coin-dropdown'>
-          {/* <label htmlFor="coins">Select Coin</label> */}
           <select onChange={(e)=>setSelecCoin(e.target.value)} name="coins" id="coins">
             <option value="">Select Coin</option>
             {
