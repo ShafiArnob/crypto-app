@@ -17,7 +17,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run(){
   try{
     await client.connect()
-    // const userCollection = client.db("crypto-app").collection("test")
+    const userCollection = client.db("crypto-app").collection("test")
     // const user = {name: "Shafi"}
     // const res = await userCollection.insertOne(user)
     // console.log(res)
@@ -25,6 +25,9 @@ async function run(){
     //add userdata
     app.post("/users", async(req, res) => {
       
+      const response = await userCollection.insertOne(req.body)
+      console.log(req.body);
+      console.log("response",response)
     })
   }
   finally{

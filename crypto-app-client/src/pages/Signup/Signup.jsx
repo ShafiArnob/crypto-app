@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { projectAuth } from '../../firebase/config';
 import { async } from '@firebase/util';
+import axios from 'axios';
 
 const Signup = () => {
   const [ createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(projectAuth);
@@ -16,6 +17,16 @@ const Signup = () => {
     e.preventDefault()
     const res = await createUserWithEmailAndPassword(email, password)
     const success = await updateProfile({displayName:username})
+    const data = {
+      id:res.user.uid,
+      username:username,
+      portfolio:{}
+    }
+    console.log(res);
+    console.log("payload", data);
+    if(success){
+      axios.post('http://localhost:5000/users',data)
+    }
   } 
   return (
     <div className='login-page'>
