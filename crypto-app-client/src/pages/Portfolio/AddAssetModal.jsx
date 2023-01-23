@@ -8,7 +8,7 @@ import { useState } from 'react'
 import DatePicker from 'react-date-picker/dist/entry.nostyle'
 const AddAssetModal = ({openModal, setopenModal}) => {
   const [transactionType,setTransactionType] = useState('buy')
-  const [selectedCoin, setSelectedCoin] = useState('')
+  const [selectedCoin, setSelectedCoin] = useState('bitcoin')
   const [quantity, setQuantity] = useState(0)
   const [pricePerCoin, setPricePerCoin] = useState(0)
   const [date, setDate] = useState(new Date())
@@ -16,7 +16,6 @@ const AddAssetModal = ({openModal, setopenModal}) => {
   
   const handleSubmit = (e) =>{
     e.preventDefault()
-
     const dataIfCoinDoesNotExistInPortfolio = {
       [selectedCoin]:{
         totalValue:quantity,
@@ -36,7 +35,9 @@ const AddAssetModal = ({openModal, setopenModal}) => {
         value:quantity
       }
     }
-    
+    if(quantity>0 && pricePerCoin>0){
+      console.log(dataIfCoinDoesNotExistInPortfolio);
+    }
     
   }
   return (
@@ -83,7 +84,7 @@ const AddAssetModal = ({openModal, setopenModal}) => {
 
         <div className='total-spent'>
           <p>Total Spent</p>
-          <h1>${quantity*pricePerCoin}</h1>
+          <h1>${(quantity*pricePerCoin).toFixed(4)}</h1>
         </div>
         <button className='btn-modal'>Add Transaction</button>
         </form>

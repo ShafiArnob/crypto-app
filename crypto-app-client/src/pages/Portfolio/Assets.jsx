@@ -1,8 +1,23 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { projectAuth } from '../../firebase/config';
 import AddAssetModal from './AddAssetModal'
 import './Portfolio.css'
+import { async } from '@firebase/util';
+
 const Assets = () => {
   const [openModal, setopenModal] = useState(false)
+  const [user, loading, error] = useAuthState(projectAuth);
+  useEffect(()=>{
+    const getUser = async() =>{
+      if(user?.uid){
+        const response = await axios.get(`http://localhost:5000/portfolio/${user.uid}`)
+        console.log(response.data);
+      }
+    }
+    getUser()
+  },[user])
   return (
     <div className='assets'>
       <h4>Your Assets</h4>

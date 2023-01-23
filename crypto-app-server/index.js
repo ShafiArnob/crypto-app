@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const { response } = require('express');
 const ObjectId = require('mongodb').ObjectId
 const app = express()
 const port = process.env.PORT || 5000
@@ -26,6 +27,13 @@ async function run(){
     app.post("/users", async(req, res) => {
       const response = await userCollection.insertOne(req.body)
       // console.log("response",response)
+      res.send(response)
+    })
+    //get userdata
+    app.get("/portfolio/:uid", async(req, res) => {
+      const uid = req.params.uid
+      const query = {uid:uid}
+      const response = await userCollection.findOne(query)
       res.send(response)
     })
   }
