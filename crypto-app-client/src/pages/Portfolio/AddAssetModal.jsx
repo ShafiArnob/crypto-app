@@ -1,9 +1,10 @@
 import Modal from 'react-modal'
 import './Portfolio.css'
+import './DatePicker.css'
 import {IoMdClose} from 'react-icons/io'
 import { mockMarketList } from '../../utils/constants/mock'
 import { useState } from 'react'
-import DatePicker from 'react-date-picker'
+import DatePicker from 'react-date-picker/dist/entry.nostyle'
 const AddAssetModal = ({openModal, setopenModal}) => {
   const [transactionType,setTransactionType] = useState('buy')
   const [selecCoin, setSelecCoin] = useState('')
