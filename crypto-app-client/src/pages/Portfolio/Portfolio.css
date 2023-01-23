@@ -46,7 +46,7 @@
     padding: 1rem;
     width: 96%;
     max-width: 26rem;
-    height: 20rem;
+    /* height: 20rem; */
     border-radius: 8px;
     background-color: var(--background-primary);
   }
@@ -128,6 +128,7 @@
     display: flex;
     justify-content: space-between;
     /* background-color: red; */
+    margin-bottom: 0.8rem;
   }
   .coin-value-cell{
     width: 50%;
@@ -141,5 +142,25 @@
     border-radius: 8px;
     color: white;
     background-color: var(--background-primary);
+    border: 1px solid var(--background-light);
+  }
+  .date{
+    color: white;
+    margin-bottom: 0.8rem;
+    /* background-color: red; */
+  }
+  .date-picker{
+    position: absolute;
+    color: white;
+    width: 100%;
+    height: 100%;
+    /* padding: 3rem; */
+    /* background-color: #5c459c; */
+  }
+  /*------------------ */
+  .total-spent{
+    padding: 0.8rem 0.5rem;
+    border-radius: 8px;
+    background-color: var(--background-secondary);
     border: 1px solid var(--background-light);
   }
