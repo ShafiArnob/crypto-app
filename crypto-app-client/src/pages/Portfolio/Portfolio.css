@@ -88,7 +88,8 @@
     display: flex;
     justify-content: space-around;
     padding: 0.3rem;
-    margin: 0.8rem 0;
+    /* margin: 0.8rem 0; */
+    margin-bottom: 0.8rem;
     border-radius: 8px;
     background-color: var(--background-light);
   }
@@ -105,6 +106,7 @@
     background-color: var(--background-primary);
   }
   .coin-dropdown{
+    margin-bottom: 0.8rem;
     /* background-color: red; */
   }
   .coin-dropdown select{
@@ -120,4 +122,24 @@
   .coin-dropdown select option .options{
     padding: 4rem ;
     background-color: #5c459c;
+  }
+
+  .coin-values{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: red; */
+  }
+  .coin-value-cell{
+    width: 50%;
+  }
+  .coin-value-cell p{
+    padding: 0.1rem 0.3rem;
+    font-size: 0.9rem;
+  }
+  .coin-value-cell input{
+    padding: 0.4rem;
+    border-radius: 8px;
+    color: white;
+    background-color: var(--background-primary);
+    border: 1px solid var(--background-light);
   }

@@ -6,6 +6,9 @@ import { useState } from 'react'
 const AddAssetModal = ({openModal, setopenModal}) => {
   const [transactionType,setTransactionType] = useState('buy')
   const [selecCoin, setSelecCoin] = useState('')
+  const [quantity, setQuantity] = useState(0)
+  const [pricePerCoin, setPricePerCoin] = useState(0)
+
   // console.log(transactionType);
   return (
     <Modal className="Modal" overlayClassName="Overlay" isOpen={openModal} onRequestClose ={()=>setopenModal(!openModal)} ariaHideApp={false}>
@@ -33,12 +36,14 @@ const AddAssetModal = ({openModal, setopenModal}) => {
           </select>
         </div>
         {/* quantity & price-per-coin */}
-        <div>
-          <div>
-
+        <div className='coin-values'>
+          <div className='coin-value-cell'>
+            <p>Quantity</p>
+            <input onChange={(e)=>setQuantity(e.target.value)} value={quantity}type="number" id='quantity'/>
           </div>
-          <div>
-
+          <div className='coin-value-cell'>
+            <p>Price Per Coin</p>
+            <input onChange={(e)=>setPricePerCoin(e.target.value)} value={pricePerCoin} type="number" id='price-per-coin'/>
           </div>
         </div>
       </div>
