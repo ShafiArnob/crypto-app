@@ -6,7 +6,7 @@ import {IoMdClose} from 'react-icons/io'
 import { mockMarketList } from '../../utils/constants/mock'
 import { useState } from 'react'
 import DatePicker from 'react-date-picker/dist/entry.nostyle'
-const AddAssetModal = ({openModal, setopenModal}) => {
+const AddAssetModal = ({openModal, setopenModal, portfolioData}) => {
   const [transactionType,setTransactionType] = useState('buy')
   const [selectedCoin, setSelectedCoin] = useState('bitcoin')
   const [quantity, setQuantity] = useState(0)

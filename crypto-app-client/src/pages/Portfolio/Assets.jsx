@@ -8,16 +8,23 @@ import { async } from '@firebase/util';
 
 const Assets = () => {
   const [openModal, setopenModal] = useState(false)
+  const [portfolioData, setPortfolioData] =useState("")
   const [user, loading, error] = useAuthState(projectAuth);
   useEffect(()=>{
     const getUser = async() =>{
       if(user?.uid){
         const response = await axios.get(`http://localhost:5000/portfolio/${user.uid}`)
-        console.log(response.data);
+        setPortfolioData(response.data)
       }
     }
     getUser()
   },[user])
+  
+  
+
+  if(loading){
+    return <p>Loading...</p>
+  }
   return (
     <div className='assets'>
       <h4>Your Assets</h4>
@@ -27,23 +34,26 @@ const Assets = () => {
         <p>Holdings</p>
       </div>
       <hr />
-      <div className='assets-value'>
-        <div className='asset'>
-          <p>Ethereum</p>
-          <span>ETH</span>
+      {portfolioData && Object.keys(portfolioData.portfolio)?.map(coin=>(
+        <div className='assets-value' key={coin}>
+          <div className='asset'>
+            <p>{portfolioData.portfolio[coin].name}</p>
+            <span>{portfolioData.portfolio[coin].symbol}</span>
+          </div>
+          <div className='price'>
+            <p>NAN</p>
+            <span>NAN</span>
+          </div>
+          <div className="holding">
+            <p>NAN</p>
+            <span>{portfolioData.portfolio[coin].symbol}{portfolioData.portfolio[coin].totalValue}</span>
+          </div>
         </div>
-        <div className='price'>
-          <p>$1657.47</p>
-          <span>4.40%</span>
-        </div>
-        <div className="holding">
-          <p>$828.73</p>
-          <span>ETH0.05</span>
-        </div>
-      </div>
+      ))
+      }
       <hr className='asset-divide'/>
       <button onClick={()=>setopenModal(!openModal)}>Add New Asset</button>
-      <AddAssetModal openModal={openModal} setopenModal={setopenModal}/>
+      <AddAssetModal openModal={openModal} setopenModal={setopenModal} portfolioData={portfolioData}/>
     </div>
   )
 }
