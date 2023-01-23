@@ -32,6 +32,15 @@ const AddAssetModal = ({openModal, setopenModal}) => {
             }
           </select>
         </div>
+        {/* quantity & price-per-coin */}
+        <div>
+          <div>
+
+          </div>
+          <div>
+
+          </div>
+        </div>
       </div>
     </Modal>
   )
