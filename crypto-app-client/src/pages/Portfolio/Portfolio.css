@@ -160,7 +160,20 @@
   /*------------------ */
   .total-spent{
     padding: 0.8rem 0.5rem;
+    margin-bottom: 0.8rem;
     border-radius: 8px;
     background-color: var(--background-secondary);
     border: 1px solid var(--background-light);
+  }
+  .btn-modal{
+    width: 100%;
+    padding: .6rem;
+    border-radius: 8px;
+    border: 1px solid var(--navbar-bg);
+    color: var(--navbar-bg);
+    background-color: transparent;
+    cursor: pointer;
+  }
+  .btn-modal:hover{
+    background-color: #5c459c2d;
   }

@@ -57,6 +57,7 @@ const AddAssetModal = ({openModal, setopenModal}) => {
           <p>Total Spent</p>
           <h1>${quantity*pricePerCoin}</h1>
         </div>
+        <button className='btn-modal'>Add Transaction</button>
       </div>
     </Modal>
   )
