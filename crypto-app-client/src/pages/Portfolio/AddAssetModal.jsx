@@ -1,12 +1,16 @@
+import { useState, useContext } from 'react'
 import Modal from 'react-modal'
 import { v4 as uuidv4 } from 'uuid';
+import {IoMdClose} from 'react-icons/io'
+import DatePicker from 'react-date-picker/dist/entry.nostyle'
+
+import { MARKET_DATA } from '../../App';
+
 import './Portfolio.css'
 import './DatePicker.css'
-import {IoMdClose} from 'react-icons/io'
-import { mockMarketList } from '../../utils/constants/mock'
-import { useState } from 'react'
-import DatePicker from 'react-date-picker/dist/entry.nostyle'
+
 const AddAssetModal = ({openModal, setopenModal, portfolioData}) => {
+  const {marketDataList} = useContext(MARKET_DATA)
   const [transactionType,setTransactionType] = useState('buy')
   const [selectedCoin, setSelectedCoin] = useState('bitcoin')
   const [quantity, setQuantity] = useState(0)
@@ -58,7 +62,7 @@ const AddAssetModal = ({openModal, setopenModal, portfolioData}) => {
           <select onChange={(e)=>setSelectedCoin(e.target.value)} name="coins" id="coins">
             {/* <option value="">Select Coin</option> */}
             {
-              mockMarketList.map(coin=>(
+              marketDataList?.map(coin=>(
                 <option key={coin.id} value={coin.id}>
                     {coin.name}
                 </option>
