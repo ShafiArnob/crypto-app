@@ -18,16 +18,26 @@ const AddAssetModal = ({openModal, setopenModal, portfolioData}) => {
   const [date, setDate] = useState(new Date())
   const uniqueId = uuidv4()
   
+  const findCoinDataFromList = (coinId) =>{
+    const coin = marketDataList.find(coin=>coin.id===coinId)
+    return coin
+  }
+
   const handleSubmit = (e) =>{
     e.preventDefault()
     const dataIfCoinDoesNotExistInPortfolio = {
       [selectedCoin]:{
+        name:findCoinDataFromList(selectedCoin).name,
+        symbol:findCoinDataFromList(selectedCoin).symbol,
         totalValue:quantity,
-        [uniqueId]:{
-          type:transactionType,
-          date:date,
-          pricePerCoin:pricePerCoin,
-          value:quantity
+        totalSpent:(quantity * pricePerCoin),
+        transaction:{
+          [uniqueId]:{
+            type:transactionType,
+            date:date,
+            pricePerCoin:pricePerCoin,
+            value:quantity
+          }
         }
       }
     }
@@ -41,6 +51,7 @@ const AddAssetModal = ({openModal, setopenModal, portfolioData}) => {
     }
     if(quantity>0 && pricePerCoin>0){
       console.log(dataIfCoinDoesNotExistInPortfolio);
+      console.log(dataIfCoinExistsInPortfolio);
     }
     
   }
