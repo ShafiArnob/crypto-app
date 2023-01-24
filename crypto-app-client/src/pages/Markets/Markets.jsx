@@ -5,8 +5,8 @@ import { mockMarketList } from '../../utils/constants/mock'
 import MarketList from './MarketList'
 
 const Markets = () => {
-  // const [marketList, setmarketList] = useState(mockMarketList)
   const {marketDataList} = useContext(MARKET_DATA)
+  // const [marketList, setmarketList] = useState(mockMarketList)
   // let counter = 0
   // useEffect(()=>{
   //   const updatemarketList = async() =>{

@@ -1,15 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { projectAuth } from '../../firebase/config';
 import AddAssetModal from './AddAssetModal'
+import { MARKET_DATA } from '../../App';
+
 import './Portfolio.css'
-import { async } from '@firebase/util';
 
 const Assets = () => {
   const [openModal, setopenModal] = useState(false)
   const [portfolioData, setPortfolioData] =useState("")
   const [user, loading, error] = useAuthState(projectAuth);
+  const {marketDataList} = useContext(MARKET_DATA)
+
   useEffect(()=>{
     const getUser = async() =>{
       if(user?.uid){
@@ -20,7 +23,10 @@ const Assets = () => {
     getUser()
   },[user])
   
-  
+  const findCoinDataFromList = (coinId) =>{
+    const coin = marketDataList.find(coin=>coin.id===coinId)
+    return coin
+  }
 
   if(loading){
     return <p>Loading...</p>
@@ -41,8 +47,8 @@ const Assets = () => {
             <span>{portfolioData.portfolio[coin].symbol}</span>
           </div>
           <div className='price'>
-            <p>NAN</p>
-            <span>NAN</span>
+            <p>{findCoinDataFromList(coin)["current_price"]}</p>
+            <span>{findCoinDataFromList(coin)["price_change_percentage_24h"].toFixed(2)}</span>
           </div>
           <div className="holding">
             <p>NAN</p>
