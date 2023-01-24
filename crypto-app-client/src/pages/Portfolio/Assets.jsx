@@ -51,7 +51,7 @@ const Assets = () => {
             <span>{findCoinDataFromList(coin)["price_change_percentage_24h"].toFixed(2)}</span>
           </div>
           <div className="holding">
-            <p>NAN</p>
+            <p>{(findCoinDataFromList(coin)["current_price"] * portfolioData.portfolio[coin].totalValue).toFixed(3)}</p>
             <span>{portfolioData.portfolio[coin].symbol}{portfolioData.portfolio[coin].totalValue}</span>
           </div>
         </div>
