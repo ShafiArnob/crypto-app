@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useCreateUserWithEmailAndPassword, useIdToken, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { projectAuth } from '../../firebase/config';
 import { async } from '@firebase/util';
 import axios from 'axios';
@@ -12,6 +12,17 @@ const Signup = () => {
   const [username, setUserName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  
+  const navigate = useNavigate()
+  const [token] = useIdToken(projectAuth);
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  
+  useEffect( () =>{
+    if (token) {
+        navigate(from, { replace: true });
+    }
+}, [token, from, navigate])
 
   const handleSubmit = async(e) =>{
     e.preventDefault()

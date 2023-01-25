@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useIdToken, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
 import './Login.css'
 import { projectAuth } from '../../firebase/config';
@@ -9,6 +9,17 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [ signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(projectAuth);
   
+  const navigate = useNavigate()
+  const [token] = useIdToken(projectAuth);
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  
+  useEffect(() =>{
+    if (token) {
+        navigate(from, { replace: true });
+    }
+}, [token, from, navigate])
+
   const handleSubmit = async(e) => {
     e.preventDefault()
     await signInWithEmailAndPassword(email,password)
