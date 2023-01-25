@@ -56,7 +56,7 @@ async function run(){
             }
           }
         )
-        res.send({response})
+        res.send(response)
       }
       //if coin does not exists in the portfolio, creates coin objects
       else{

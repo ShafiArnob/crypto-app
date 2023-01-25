@@ -12,7 +12,7 @@ import axios from 'axios';
 import { async } from '@firebase/util';
 import { useNavigate } from 'react-router-dom';
 
-const AddAssetModal = ({openModal, setopenModal, portfolioData}) => {
+const AddAssetModal = ({openModal, setopenModal, portfolioData, setRefetchPortfolio}) => {
   const {marketDataList} = useContext(MARKET_DATA)
   const [transactionType,setTransactionType] = useState('buy')
   const [selectedCoin, setSelectedCoin] = useState('bitcoin')
@@ -78,9 +78,9 @@ const AddAssetModal = ({openModal, setopenModal, portfolioData}) => {
     if(quantity>0 && pricePerCoin>0 && !ifCoinExistsInPortfolio(selectedCoin)){
       const tempObj = {...dataIfCoinDoesNotExistInPortfolio, exists:false}
       response = await axios.post(`http://localhost:5000/portfolio/${portfolioData.uid}`,tempObj)
-      // console.log(response);
-      if(response.data.modifiedCount){
-        navigate('/portfolio')
+      if(response.data.acknowledged){
+        setRefetchPortfolio(response)
+        // navigate('/portfolio')
       }
     }
     //coin exists to update transaction in that
@@ -93,9 +93,9 @@ const AddAssetModal = ({openModal, setopenModal, portfolioData}) => {
         const newTempObj = {...tempObj, newTotalValue:newTotalValue, newTotalSpent:newTotalSpent}
         console.log(newTempObj);
         response = await axios.post(`http://localhost:5000/portfolio/${portfolioData.uid}`,newTempObj)
-        // console.log(response);
-        if(response.data.modifiedCount){
-          navigate('/portfolio')
+        if(response.data.acknowledged){
+          setRefetchPortfolio(response)
+          // navigate('/portfolio')
         }
       }
       //For sell
@@ -106,9 +106,10 @@ const AddAssetModal = ({openModal, setopenModal, portfolioData}) => {
         const newTempObj = {...tempObj, newTotalValue:newTotalValue, newTotalSpent:newTotalSpent}
         console.log(newTempObj);
         response = await axios.post(`http://localhost:5000/portfolio/${portfolioData.uid}`,newTempObj)
-        // console.log(response);
-        if(response.data.modifiedCount){
-          navigate('/portfolio')
+  
+        if(response.data.acknowledged){
+          setRefetchPortfolio(response)
+          // navigate('/portfolio')
         }
       }
     }

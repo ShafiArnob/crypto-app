@@ -12,8 +12,12 @@ const Assets = () => {
   const [portfolioData, setPortfolioData] =useState("")
   const [user, loading, error] = useAuthState(projectAuth);
   const {marketDataList} = useContext(MARKET_DATA)
-
+  const [refetchPortfolio, setRefetchPortfolio] = useState('')
+  
+  let count = 0
   useEffect(()=>{
+    count++
+    console.log(count);
     const getUser = async() =>{
       if(user?.uid){
         const response = await axios.get(`http://localhost:5000/portfolio/${user.uid}`)
@@ -21,7 +25,7 @@ const Assets = () => {
       }
     }
     getUser()
-  },[user])
+  },[user, refetchPortfolio])
   
   const findCoinDataFromList = (coinId) =>{
     const coin = marketDataList.find(coin=>coin.id===coinId)
@@ -59,7 +63,7 @@ const Assets = () => {
       }
       <hr className='asset-divide'/>
       <button onClick={()=>setopenModal(!openModal)}>Add New Asset</button>
-      <AddAssetModal openModal={openModal} setopenModal={setopenModal} portfolioData={portfolioData}/>
+      <AddAssetModal openModal={openModal} setopenModal={setopenModal} portfolioData={portfolioData} setRefetchPortfolio={setRefetchPortfolio}/>
     </div>
   )
 }
