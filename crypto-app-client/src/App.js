@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import RequireAuth from './firebase/RequireAuth';
 import Crypto from './pages/Crypto/Crypto';
 import Login from './pages/Login/Login';
 import Markets from './pages/Markets/Markets';
@@ -36,8 +37,8 @@ function App() {
             <Route path="/" element={<Markets/>}></Route>
             <Route path="/login" element={<Login/>}></Route>
             <Route path="/signup" element={<Signup/>}></Route>
-            <Route path="/coins/:id" element={<Crypto/>}></Route>
-            <Route path='/portfolio' element={<Portfolio/>}></Route>
+            <Route path="/coins/:id" element={<RequireAuth><Crypto/></RequireAuth>}></Route>
+            <Route path='/portfolio' element={<RequireAuth><Portfolio/></RequireAuth>}></Route>
           </Routes>
         </div>
       </div>
