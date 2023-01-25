@@ -45,7 +45,7 @@ const Assets = () => {
         <div className='assets-value' key={coin}>
           <div className='asset'>
             <p>{portfolioData.portfolio[coin].name}</p>
-            <span>{portfolioData.portfolio[coin].symbol}</span>
+            <span>{portfolioData.portfolio[coin].symbol.toUpperCase()}</span>
           </div>
           <div className='price'>
             <p>{findCoinDataFromList(coin)["current_price"]}</p>

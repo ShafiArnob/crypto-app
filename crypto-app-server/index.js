@@ -60,7 +60,7 @@ async function run(){
       }
       //if coin does not exists in the portfolio, creates coin objects
       else{
-        const response = await testCollection.updateOne(
+        const response = await userCollection.updateOne(
           {uid:uid},
           {$set:{[`portfolio.${coinId}`]:transactionObj[coinId]}}
         )
