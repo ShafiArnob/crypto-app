@@ -14,10 +14,7 @@ const Assets = () => {
   const {marketDataList} = useContext(MARKET_DATA)
   const [refetchPortfolio, setRefetchPortfolio] = useState('')
   
-  let count = 0
   useEffect(()=>{
-    count++
-    console.log(count);
     const getUser = async() =>{
       if(user?.uid){
         const response = await axios.get(`http://localhost:5000/portfolio/${user.uid}`)

@@ -20,7 +20,7 @@ const Navbar = () => {
       </div>
       <ul>
         <li><Link to="/">Market</Link></li>
-        <li><Link to="/portfolio">Portfolio</Link></li>
+        {user && <li><Link to="/portfolio">Portfolio</Link></li>}
         {!user && <li><Link to="/login">Login</Link></li>}
         
         {user && <li><Link onClick={()=>handleLogout()}>Logout</Link></li>}
