@@ -19,6 +19,7 @@ async function run(){
   try{
     await client.connect()
     const userCollection = client.db("crypto-app").collection("users")
+    const testCollection = client.db("crypto-app").collection("test")
     // const user = {name: "Shafi"}
     // const res = await userCollection.insertOne(user)
     // console.log(res)
@@ -29,12 +30,44 @@ async function run(){
       // console.log("response",response)
       res.send(response)
     })
+
     //get userdata
     app.get("/portfolio/:uid", async(req, res) => {
       const uid = req.params.uid
       const query = {uid:uid}
-      const response = await userCollection.findOne(query)
+      const response = await testCollection.findOne(query)
       res.send(response)
+    })
+
+    app.post("/portfolio/:uid", async(req, res)=>{
+      const uid = req.params.uid
+      const coinId = req.body.query.coinId
+      const transId = req.body.query.transId
+      const transactionObj = req.body
+
+      //if coin exists in the portfolio
+      if(req.body.exists){
+        const response = await testCollection.updateOne(
+          {uid:uid},
+          {$set:{
+            [`portfolio.${coinId}.transaction.${transId}`] : transactionObj[transId],
+            [`portfolio.${coinId}.totalValue`] : transactionObj.newTotalValue,
+            [`portfolio.${coinId}.totalSpent`] : transactionObj.newTotalSpent
+            }
+          }
+        )
+        res.send({response})
+      }
+      //if coin does not exists in the portfolio, creates coin objects
+      else{
+        const response = await testCollection.updateOne(
+          {uid:uid},
+          {$set:{[`portfolio.${coinId}`]:transactionObj[coinId]}}
+        )
+        console.log(req.body);
+        res.send(response)
+      }
+
     })
   }
   finally{

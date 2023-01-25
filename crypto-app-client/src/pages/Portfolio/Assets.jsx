@@ -28,7 +28,7 @@ const Assets = () => {
     return coin
   }
 
-  if(loading){
+  if(loading || !portfolioData){
     return <p>Loading...</p>
   }
   return (

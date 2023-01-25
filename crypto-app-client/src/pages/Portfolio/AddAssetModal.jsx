@@ -8,6 +8,9 @@ import { MARKET_DATA } from '../../App';
 
 import './Portfolio.css'
 import './DatePicker.css'
+import axios from 'axios';
+import { async } from '@firebase/util';
+import { useNavigate } from 'react-router-dom';
 
 const AddAssetModal = ({openModal, setopenModal, portfolioData}) => {
   const {marketDataList} = useContext(MARKET_DATA)
@@ -16,6 +19,8 @@ const AddAssetModal = ({openModal, setopenModal, portfolioData}) => {
   const [quantity, setQuantity] = useState(0)
   const [pricePerCoin, setPricePerCoin] = useState(0)
   const [date, setDate] = useState(new Date())
+
+  const navigate = useNavigate()
   const uniqueId = uuidv4()
   
   const findCoinDataFromList = (coinId) =>{
@@ -23,35 +28,89 @@ const AddAssetModal = ({openModal, setopenModal, portfolioData}) => {
     return coin
   }
 
-  const handleSubmit = (e) =>{
-    e.preventDefault()
-    const dataIfCoinDoesNotExistInPortfolio = {
-      [selectedCoin]:{
-        name:findCoinDataFromList(selectedCoin).name,
-        symbol:findCoinDataFromList(selectedCoin).symbol,
-        totalValue:quantity,
-        totalSpent:(quantity * pricePerCoin),
-        transaction:{
-          [uniqueId]:{
-            type:transactionType,
-            date:date,
-            pricePerCoin:pricePerCoin,
-            value:quantity
-          }
+  const ifCoinExistsInPortfolio = (coinId) =>{
+    const getCoin = portfolioData?.portfolio[coinId] || null
+    // console.log(getCoin);
+    if(getCoin===null){
+      return false
+    }
+    else{
+      return true
+    }
+  }
+  // console.log(portfolioData);
+  const dataIfCoinDoesNotExistInPortfolio = {
+    query:{
+      coinId:selectedCoin,
+      transId:uniqueId
+    },
+    [selectedCoin]:{
+      name:findCoinDataFromList(selectedCoin).name,
+      symbol:findCoinDataFromList(selectedCoin).symbol,
+      totalValue:quantity,
+      totalSpent:(quantity * pricePerCoin),
+      transaction:{
+        [uniqueId]:{
+          type:transactionType,
+          date:date,
+          pricePerCoin:pricePerCoin,
+          value:quantity
         }
       }
     }
-    const dataIfCoinExistsInPortfolio = {
-      [uniqueId]:{
-        type:transactionType,
-        date:date,
-        pricePerCoin:pricePerCoin,
-        value:quantity
+  }
+  const dataIfCoinExistsInPortfolio = {
+    query:{
+      coinId:selectedCoin,
+      transId:uniqueId
+    },
+    [uniqueId]:{
+      type:transactionType,
+      date:date,
+      pricePerCoin:pricePerCoin,
+      value:quantity
+    }
+  }
+  let response;
+  const handleSubmit = async(e) =>{
+    e.preventDefault()
+    //Coin does not exist so create coin key then update in that
+    if(quantity>0 && pricePerCoin>0 && !ifCoinExistsInPortfolio(selectedCoin)){
+      const tempObj = {...dataIfCoinDoesNotExistInPortfolio, exists:false}
+      response = await axios.post(`http://localhost:5000/portfolio/${portfolioData.uid}`,tempObj)
+      // console.log(response);
+      if(response.data.modifiedCount){
+        navigate('/portfolio')
       }
     }
-    if(quantity>0 && pricePerCoin>0){
-      console.log(dataIfCoinDoesNotExistInPortfolio);
-      console.log(dataIfCoinExistsInPortfolio);
+    //coin exists to update transaction in that
+    else if(quantity>0 && pricePerCoin>0 && ifCoinExistsInPortfolio(selectedCoin)){
+      const tempObj = {...dataIfCoinExistsInPortfolio, exists:true}
+      if(tempObj[uniqueId].type === "buy"){
+        const newTotalValue = parseFloat(portfolioData.portfolio[selectedCoin].totalValue) + parseFloat(quantity)
+        const newTotalSpent =  parseFloat(portfolioData.portfolio[selectedCoin].totalSpent) + parseFloat(quantity*pricePerCoin)
+
+        const newTempObj = {...tempObj, newTotalValue:newTotalValue, newTotalSpent:newTotalSpent}
+        console.log(newTempObj);
+        response = await axios.post(`http://localhost:5000/portfolio/${portfolioData.uid}`,newTempObj)
+        // console.log(response);
+        if(response.data.modifiedCount){
+          navigate('/portfolio')
+        }
+      }
+      //For sell
+      else{
+        const newTotalValue = parseFloat(portfolioData.portfolio[selectedCoin].totalValue) - parseFloat(quantity)
+        const newTotalSpent =  parseFloat(portfolioData.portfolio[selectedCoin].totalSpent) - parseFloat(quantity*pricePerCoin)
+
+        const newTempObj = {...tempObj, newTotalValue:newTotalValue, newTotalSpent:newTotalSpent}
+        console.log(newTempObj);
+        response = await axios.post(`http://localhost:5000/portfolio/${portfolioData.uid}`,newTempObj)
+        // console.log(response);
+        if(response.data.modifiedCount){
+          navigate('/portfolio')
+        }
+      }
     }
     
   }
