@@ -6,22 +6,10 @@ import MarketList from './MarketList'
 
 const Markets = () => {
   const {marketDataList} = useContext(MARKET_DATA)
-  // const [marketList, setmarketList] = useState(mockMarketList)
-  // let counter = 0
-  // useEffect(()=>{
-  //   const updatemarketList = async() =>{
-  //     try{
-  //       const response = await fetchMarketList()
-  //       setmarketList(response)
-  //       console.log(counter++);
-  //     }catch(error){
-  //       setmarketList([])
-  //       console.log(error);
-  //     }
-  //   }
-  //   // updatemarketList()
-  // }, [])
-  // // console.log(marketList);
+  const [marketList, setmarketList] = useState(mockMarketList)
+  let counter = 0
+
+  // console.log(marketList);
   return (
     <div className='' style={{backgroundColor:""}}>
       <MarketList marketList={marketDataList}/>

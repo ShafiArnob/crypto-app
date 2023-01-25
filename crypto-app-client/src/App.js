@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Crypto from './pages/Crypto/Crypto';
@@ -7,13 +7,26 @@ import Markets from './pages/Markets/Markets';
 import Portfolio from './pages/Portfolio/Portfolio';
 import Signup from './pages/Signup/Signup';
 import Navbar from './Shared/Navbar';
+import { fetchMarketList } from './utils/api/coinGecko-api';
 import { mockMarketList } from './utils/constants/mock';
 
 export const MARKET_DATA = createContext()
 
 function App() {
-  const [marketDataList, setMarketDataList] = useState(mockMarketList)
+  const [marketDataList, setMarketDataList] = useState([])
   const value = {marketDataList, setMarketDataList}
+  useEffect(()=>{
+    const updatemarketList = async() =>{
+      try{
+        const response = await fetchMarketList()
+        setMarketDataList(response)
+      }catch(error){
+        setMarketDataList([])
+        console.log(error);
+      }
+    }
+    updatemarketList()
+  }, [])
   return (
     <MARKET_DATA.Provider value={value}>
       <div>
