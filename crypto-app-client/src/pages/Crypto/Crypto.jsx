@@ -7,8 +7,8 @@ import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import axios from 'axios'
 const Crypto = () => {
-  const [coinData, setCoinData] = useState(mockCoinData)
-  const [chartData, setChartData] = useState(marketData)
+  const [coinData, setCoinData] = useState({})
+  const [chartData, setChartData] = useState({})
   const {id} = useParams()
   // console.log(id);
   
@@ -38,12 +38,11 @@ const Crypto = () => {
       }
     })
   }
-  const priceData = formatPriceData(chartData)
   
-  // if(coinData){
-  //   console.log(5);
-  //   return <p>Loading...</p>
-  // }
+  if(!Object.keys(coinData).length  || !Object.keys(chartData).length){
+    return <p>Loading...</p>
+  }
+  const priceData = formatPriceData(chartData)
   return (
     <div className="crypto-info">
       {/* Price Info */}
