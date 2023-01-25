@@ -35,7 +35,7 @@ async function run(){
     app.get("/portfolio/:uid", async(req, res) => {
       const uid = req.params.uid
       const query = {uid:uid}
-      const response = await testCollection.findOne(query)
+      const response = await userCollection.findOne(query)
       res.send(response)
     })
 
@@ -47,7 +47,7 @@ async function run(){
 
       //if coin exists in the portfolio
       if(req.body.exists){
-        const response = await testCollection.updateOne(
+        const response = await userCollection.updateOne(
           {uid:uid},
           {$set:{
             [`portfolio.${coinId}.transaction.${transId}`] : transactionObj[transId],
