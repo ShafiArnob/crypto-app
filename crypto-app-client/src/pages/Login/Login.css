@@ -16,6 +16,7 @@
   /* background-color: brown; */
 }
 .login-form{
+  max-width: 95%;
   padding: 1.2rem;
   border-radius: 8px;
   background-color: var(--background-secondary);
@@ -64,7 +65,10 @@
   border-radius: 8px;
   background-color: var(--navbar-bg);
 }
-
+.link a{
+  text-decoration: none;
+  color: #2563eb;
+}
 .error-message{
   margin-top: 0.5rem;
   border-radius: 8px;

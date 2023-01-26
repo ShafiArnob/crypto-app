@@ -42,7 +42,7 @@ const Login = () => {
           </div>
           <button className='btn-login'>Login</button>
         </form>
-        <p>Dont have an account <span><Link to="/signup">click</Link></span> to signup</p>
+        <p>Dont have an account <span className='link'><Link to="/signup">click</Link></span> to signup</p>
         {error && <p className='error-message'>{error?.message}</p>}
       </div>
     </div>

@@ -45,23 +45,25 @@ const Signup = () => {
       <div className='login-form'>
         <h2>Signup</h2>
         <form onSubmit={handleSubmit}>
-          <div>
+
+          <div className='input-block'>
             <p>Username: </p>
-            <input onChange={(e)=>setUserName(e.target.value)} value={username} type="text" name="email" id="username" />
+            <input onChange={(e)=>setUserName(e.target.value)} value={username} type="text" name="username" id="username" required/>
           </div>
 
-          <div>
+          <div className='input-block'>
             <p>Email: </p>
-            <input onChange={(e)=>setEmail(e.target.value)} value={email} type="email" name="email" id="email" />
+            <input onChange={(e)=>setEmail(e.target.value)} value={email} type="email" name="email" id="email" required/>
           </div>
 
-          <div>
+          <div className='input-block'>
             <p>Password: </p>
-            <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" name="password" id="password" />
+            <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" name="password" id="password" required/>
           </div>
-          <button>Signup</button>
+          <button className='btn-login'>Signup</button>
         </form>
         <p>Already have an account <span><Link to="/login">click</Link></span> to login</p>
+        {error && <p className='error-message'>{error?.message}</p>}
       </div>
     </div>
   )
