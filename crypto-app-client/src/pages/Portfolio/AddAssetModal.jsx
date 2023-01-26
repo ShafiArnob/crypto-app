@@ -77,7 +77,7 @@ const AddAssetModal = ({openModal, setopenModal, portfolioData, setRefetchPortfo
     //Coin does not exist so create coin key then update in that
     if(quantity>0 && pricePerCoin>0 && !ifCoinExistsInPortfolio(selectedCoin)){
       const tempObj = {...dataIfCoinDoesNotExistInPortfolio, exists:false}
-      response = await axios.post(`http://localhost:5000/portfolio/${portfolioData.uid}`,tempObj)
+      response = await axios.post(`https://crypto-app-server.vercel.app/portfolio/${portfolioData.uid}`,tempObj)
       if(response.data.acknowledged){
         setRefetchPortfolio(response)
         // navigate('/portfolio')
@@ -92,7 +92,7 @@ const AddAssetModal = ({openModal, setopenModal, portfolioData, setRefetchPortfo
 
         const newTempObj = {...tempObj, newTotalValue:newTotalValue, newTotalSpent:newTotalSpent}
         console.log(newTempObj);
-        response = await axios.post(`http://localhost:5000/portfolio/${portfolioData.uid}`,newTempObj)
+        response = await axios.post(`https://crypto-app-server.vercel.app/portfolio/${portfolioData.uid}`,newTempObj)
         if(response.data.acknowledged){
           setRefetchPortfolio(response)
           // navigate('/portfolio')
@@ -105,7 +105,7 @@ const AddAssetModal = ({openModal, setopenModal, portfolioData, setRefetchPortfo
 
         const newTempObj = {...tempObj, newTotalValue:newTotalValue, newTotalSpent:newTotalSpent}
         console.log(newTempObj);
-        response = await axios.post(`http://localhost:5000/portfolio/${portfolioData.uid}`,newTempObj)
+        response = await axios.post(`https://crypto-app-server.vercel.app/portfolio/${portfolioData.uid}`,newTempObj)
   
         if(response.data.acknowledged){
           setRefetchPortfolio(response)

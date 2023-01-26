@@ -36,7 +36,7 @@ const Signup = () => {
     console.log(res);
     console.log("payload", data);
     if(success){
-      var response_server = await axios.post('http://localhost:5000/users',data)
+      var response_server = await axios.post('https://crypto-app-server.vercel.app/users',data)
       console.log(response_server);
     }
   } 

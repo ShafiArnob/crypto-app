@@ -24,6 +24,13 @@ async function run(){
     // const res = await userCollection.insertOne(user)
     // console.log(res)
 
+    //test mongo 
+    app.get("/test", async(req, res) => {
+      const cursor = testCollection.find({})
+      const users = await cursor.toArray()
+      // console.log("response",response)
+      res.send(users)
+    })
     // add userdata
     app.post("/users", async(req, res) => {
       const response = await userCollection.insertOne(req.body)

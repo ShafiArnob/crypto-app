@@ -18,7 +18,7 @@ const Assets = () => {
   useEffect(()=>{
     const getUser = async() =>{
       if(user?.uid){
-        const response = await axios.get(`http://localhost:5000/portfolio/${user.uid}`)
+        const response = await axios.get(`https://crypto-app-server.vercel.app/portfolio/${user.uid}`)
         setPortfolioData(response.data)
       }
     }
