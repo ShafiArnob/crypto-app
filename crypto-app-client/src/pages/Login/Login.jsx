@@ -24,24 +24,26 @@ const Login = () => {
     e.preventDefault()
     await signInWithEmailAndPassword(email,password)
   }
-  // console.log(user);
+  // console.log(error.message);
   return (
     <div className='login-page'>
       <div className='login-form'>
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
-          <div>
+
+          <div className='input-block'>
             <p>Email: </p>
             <input onChange={(e)=>setEmail(e.target.value)} value={email} type="email" name="email" id="email" />
           </div>
 
-          <div>
+          <div className='input-block'>
             <p>Password: </p>
             <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" name="password" id="password" />
           </div>
-          <button>Login</button>
+          <button className='btn-login'>Login</button>
         </form>
         <p>Dont have an account <span><Link to="/signup">click</Link></span> to signup</p>
+        {error && <p className='error-message'>{error?.message}</p>}
       </div>
     </div>
   )
