@@ -6,6 +6,7 @@ import AddAssetModal from './AddAssetModal'
 import { MARKET_DATA } from '../../App';
 
 import './Portfolio.css'
+import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 
 const Assets = () => {
   const [openModal, setopenModal] = useState(false)
@@ -49,7 +50,10 @@ const Assets = () => {
           </div>
           <div className='price'>
             <p>{findCoinDataFromList(coin)["current_price"]}</p>
-            <span>{findCoinDataFromList(coin)["price_change_percentage_24h"].toFixed(2)}</span>
+            <span className={findCoinDataFromList(coin)["price_change_percentage_24h"] < 0  ? "red"  : "green"}>
+              <span >{findCoinDataFromList(coin)["price_change_percentage_24h"] < 0 ? (  <AiFillCaretDown />) : (  <AiFillCaretUp />)}</span>
+              {findCoinDataFromList(coin)["price_change_percentage_24h"].toFixed(2)}
+            </span>
           </div>
           <div className="holding">
             <p>{(findCoinDataFromList(coin)["current_price"] * portfolioData.portfolio[coin].totalValue).toFixed(3)}</p>
