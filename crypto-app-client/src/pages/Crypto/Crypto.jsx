@@ -82,7 +82,7 @@ const Crypto = () => {
         <div className="time-period">
           <span>24H</span>
           <span>7D</span>
-          <span>14D</span>
+          {/* <span>14D</span> */}
           <span>30D</span>
           <span>60D</span>
           <span>1Y</span>
@@ -123,7 +123,8 @@ const Crypto = () => {
             )}
             %
           </span>
-          <span
+
+          {/* <span
             className={
               coinData.market_data.price_change_percentage_14d < 0
                 ? "red"
@@ -139,7 +140,7 @@ const Crypto = () => {
               coinData.market_data.price_change_percentage_14d.toFixed(2)
             )}
             %
-          </span>
+          </span> */}
           <span
             className={
               coinData.market_data.price_change_percentage_30d < 0

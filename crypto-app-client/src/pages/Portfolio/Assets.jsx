@@ -52,7 +52,7 @@ const Assets = () => {
             <p>{findCoinDataFromList(coin)["current_price"]}</p>
             <span className={findCoinDataFromList(coin)["price_change_percentage_24h"] < 0  ? "red"  : "green"}>
               <span >{findCoinDataFromList(coin)["price_change_percentage_24h"] < 0 ? (  <AiFillCaretDown />) : (  <AiFillCaretUp />)}</span>
-              {findCoinDataFromList(coin)["price_change_percentage_24h"].toFixed(2)}
+              {findCoinDataFromList(coin)["price_change_percentage_24h"].toFixed(2)}%
             </span>
           </div>
           <div className="holding">

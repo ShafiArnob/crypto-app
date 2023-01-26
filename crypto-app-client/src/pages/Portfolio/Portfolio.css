@@ -11,7 +11,7 @@
   flex-direction: column;
   border-radius: 8px;
   background-color: var(--background-secondary);
-  padding: 0.5rem;
+  padding: 1.2rem;
   margin: 0.5rem;
 }
 .assets-title{
@@ -26,7 +26,7 @@
   padding: 0 1rem;
 }
 .assets-value{
-  margin: 0.5rem 0;
+  margin: 0.6rem 0;
   padding: 0.5rem 0.3rem;
   border-radius: 8px;
 }
@@ -35,10 +35,11 @@
   cursor: pointer;
 }
 .asset{
+  width: 3rem;
   /* text-align: center; */
-  /* max-width: 8rem;
-  padding: 0 1rem;
-  background-color: blue; */
+  max-width: 8rem;
+  /* padding: 0 1rem; */
+  /* background-color: blue; */
 }
 .price{
   text-align: center;
@@ -197,3 +198,8 @@
   .btn-modal:hover{
     background-color: #5c459c2d;
   }
+
+  /* For mobile phones: */
+@media only screen and (max-width: 768px) {
+
+}
