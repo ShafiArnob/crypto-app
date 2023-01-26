@@ -21917,3 +21917,10 @@ export const marketData = {
     ]
   ]
 }
+
+
+//MAcro Data
+//https://api.coingecko.com/api/v3/global
+
+// Search
+//https://api.coingecko.com/api/v3/search?query=bit
