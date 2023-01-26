@@ -1,0 +1,32 @@
+:root{
+  --navbar-bg: #5c459c;
+
+  --background-primary:#212121;
+  --background-secondary:#383838;
+
+  --text-color-light:rgba(145,145,159);
+  --container-width-max: 800px;
+}
+/*^ :::::::::::MarketStat::::::::::: */
+.market-stat{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 1rem;
+  padding: 0.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--navbar-bg);
+  /* background-color: var(--background-secondary); */
+}
+.stat-block{
+  margin: 0.2rem ;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: var(--background-secondary);
+}
+.stat-block-title{
+  font-size: 0.8rem;
+  color: var(--text-color-light);
+}
+.stat-block-value{
+  font-size: 0.95rem;
+}

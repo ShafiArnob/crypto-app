@@ -3,6 +3,7 @@ import { MARKET_DATA } from '../../App'
 import { fetchMarketList } from '../../utils/api/coinGecko-api'
 import { mockMarketList } from '../../utils/constants/mock'
 import MarketList from './MarketList'
+import MarketStat from './MarketStat'
 
 const Markets = () => {
   const {marketDataList} = useContext(MARKET_DATA)
@@ -11,7 +12,8 @@ const Markets = () => {
 
   // console.log(marketList);
   return (
-    <div className='' style={{backgroundColor:""}}>
+    <div>
+      <MarketStat/>
       <MarketList marketList={marketDataList}/>
     </div>
   )
