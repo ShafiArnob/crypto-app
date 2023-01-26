@@ -23,6 +23,10 @@
   border-radius: 8px;
   background-color: var(--background-secondary);
 }
+.mcap{
+  display: flex;
+  justify-content: space-between;
+}
 .stat-block-title{
   font-size: 0.8rem;
   color: var(--text-color-light);

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useCreateUserWithEmailAndPassword, useIdToken, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { projectAuth } from '../../firebase/config';
-import { async } from '@firebase/util';
 import axios from 'axios';
 
 const Signup = () => {

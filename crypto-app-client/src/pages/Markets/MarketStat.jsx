@@ -1,18 +1,33 @@
 
+import { useEffect } from 'react'
 import { useState } from 'react'
-import { mockMarketStat } from '../../utils/constants/mock'
+import Loading from '../../Shared/Loading'
+import { fetchGlobalMarketStat } from '../../utils/api/coinGecko-api'
 import './Markets.css'
 
 const MarketStat = () => {
-  const [marketStat, setMarketStat] = useState(mockMarketStat.data)  
+  const [marketStat, setMarketStat] = useState({})
+  useEffect(()=>{
+    const getMarketStat = async() =>{
+      await fetchGlobalMarketStat()
+      .then(data => setMarketStat(data))
+      .catch(err => {
+        console.log(err)
+      })
+    }
+    getMarketStat()
+  },[])
+  if(!Object.keys(marketStat).length){
+    return <Loading/>
+  }
   return (
     <div className='market-stat'>
       
       <div className='stat-block'>
         <span className='stat-block-title'>Market Cap</span>
-        <p className='stat-block-value'>
+        <p className='stat-block-value mcap'>
           {marketStat.total_market_cap.usd.toFixed(0)}
-          <span style={{marginLeft:"3px"}} className={`${marketStat.market_cap_change_percentage_24h_usd["price_change_percentage_24h"] < 0  ? "red"  : "green"}`}>{marketStat.market_cap_change_percentage_24h_usd.toFixed(2)}%</span>
+          <span className={`${marketStat.market_cap_change_percentage_24h_usd["price_change_percentage_24h"] < 0  ? "red"  : "green"}`}>{marketStat.market_cap_change_percentage_24h_usd.toFixed(2)}%</span>
         </p>
       </div>
       
