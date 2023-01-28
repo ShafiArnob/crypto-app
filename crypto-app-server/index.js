@@ -17,7 +17,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 // console.log(process.env);
 async function run(){
   try{
-    await client.connect()
+    // await client.connect()
     const userCollection = client.db("crypto-app").collection("users")
     const testCollection = client.db("crypto-app").collection("test")
     // const user = {name: "Shafi"}
