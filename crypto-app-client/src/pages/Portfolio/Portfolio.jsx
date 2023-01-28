@@ -1,5 +1,6 @@
 import React from 'react'
 import Assets from './Assets'
+import PortfolioStats from './PortfolioStats'
 
 const Portfolio = () => {
   return (
@@ -8,7 +9,7 @@ const Portfolio = () => {
         {/* <h1>Portfolio</h1> */}
       </div>
       <div>
-        stats
+        <PortfolioStats/>
       </div>
       <div>
         <Assets/>

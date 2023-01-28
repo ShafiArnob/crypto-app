@@ -51,7 +51,8 @@
   padding-right: 2px;
   /* background-color: red; */
 }
-/* Modal */
+
+/*^ Modal */
 .Modal {
   /* display: flex; */
   /* top: 40px;
@@ -67,137 +68,159 @@
     background-color: var(--background-primary);
   }
 
-  .Overlay {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.Overlay {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(50, 50, 50, 0.75);
+}
+.modal-header{
+  display: flex;
+  justify-content: space-between;
+  /* background-color: red; */
+  margin-bottom: 0.8rem;
+}
+.modal-close{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: #383838;
+}
+.modal-close:hover{
+  background-color: #272727;
+  font-weight: bold;
+  cursor: pointer;
+}
+.transaction-type{
+  display: flex;
+  justify-content: space-around;
+  padding: 0.3rem;
+  /* margin: 0.8rem 0; */
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  background-color: var(--background-light);
+}
+.transaction-type p{
+  padding: 0.4rem 20%;
+  border-radius: 8px;
+  background-color: var(--background-light);
+}
+.transaction-type p:hover{
+  background-color: var(--background-primary);
+  cursor: pointer;
+}
+.transaction-type p.active{
+  background-color: var(--background-primary);
+}
+.coin-dropdown{
+  margin-bottom: 0.8rem;
+  /* background-color: red; */
+}
+.coin-dropdown select{
+  font-size: 1rem;
+  width: 100%;
+  /* height: 2.2rem; */
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  background-color: var(--background-secondary);
+  color: white;
+  border: 1px solid var(--background-light);
+  
+}
+.coin-dropdown select option .options{
+  padding: 4rem ;
+  background-color: #5c459c;
+}
+.coin-values{
+  display: flex;
+  justify-content: space-between;
+  /* background-color: red; */
+  margin-bottom: 0.8rem;
+}
+.coin-value-cell{
+  width: 50%;
+}
+.coin-value-cell p{
+  padding: 0.1rem 0.3rem;
+  font-size: 0.9rem;
+}
+.coin-value-cell input{
+  padding: 0.4rem;
+  border-radius: 8px;
+  color: white;
+  background-color: var(--background-primary);
+  border: 1px solid var(--background-light);
+}
+/* -------------------- */
+.date{
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+  /* background-color: red; */
+}
+.date-picker{
+  position: absolute;
+  color: white;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px
+  /* padding: 3rem; */
+  /* background-color: #5c459c; */
+}
+/*------------------ */
+.total-spent{
+  padding: 0.8rem 0.5rem;
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  background-color: var(--background-secondary);
+  border: 1px solid var(--background-light);
+}
+/* --------------------- */
+.btn-modal{
+  width: 100%;
+  padding: .6rem;
+  border-radius: 8px;
+  border: 1px solid var(--navbar-bg);
+  color: var(--navbar-bg);
+  background-color: transparent;
+  cursor: pointer;
+}
+.btn-modal:hover{
+  background-color: #5c459c2d;
+}
 
-    background-color: rgba(50, 50, 50, 0.75);
-  }
-  .modal-header{
-    display: flex;
-    justify-content: space-between;
-    /* background-color: red; */
-    margin-bottom: 0.8rem;
-  }
-  .modal-close{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background-color: #383838;
-  }
-  .modal-close:hover{
-    background-color: #272727;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .transaction-type{
-    display: flex;
-    justify-content: space-around;
-    padding: 0.3rem;
-    /* margin: 0.8rem 0; */
-    margin-bottom: 0.8rem;
-    border-radius: 8px;
-    background-color: var(--background-light);
-  }
-  .transaction-type p{
-    padding: 0.4rem 20%;
-    border-radius: 8px;
-    background-color: var(--background-light);
-  }
-  .transaction-type p:hover{
-    background-color: var(--background-primary);
-    cursor: pointer;
-  }
-  .transaction-type p.active{
-    background-color: var(--background-primary);
-  }
-  .coin-dropdown{
-    margin-bottom: 0.8rem;
-    /* background-color: red; */
-  }
-  .coin-dropdown select{
-    font-size: 1rem;
-    width: 100%;
-    /* height: 2.2rem; */
-    padding: 0.8rem 1rem;
-    border-radius: 8px;
-    background-color: var(--background-secondary);
-    color: white;
-    border: 1px solid var(--background-light);
-    
-  }
-  .coin-dropdown select option .options{
-    padding: 4rem ;
-    background-color: #5c459c;
-  }
 
-  .coin-values{
-    display: flex;
-    justify-content: space-between;
-    /* background-color: red; */
-    margin-bottom: 0.8rem;
-  }
-  .coin-value-cell{
-    width: 50%;
-  }
-  .coin-value-cell p{
-    padding: 0.1rem 0.3rem;
-    font-size: 0.9rem;
-  }
-  .coin-value-cell input{
-    padding: 0.4rem;
-    border-radius: 8px;
-    color: white;
-    background-color: var(--background-primary);
-    border: 1px solid var(--background-light);
-  }
-  /* -------------------- */
-  .date{
-    color: white;
-    border-radius: 8px;
-    margin-bottom: 0.8rem;
-    /* background-color: red; */
-  }
-  .date-picker{
-    position: absolute;
-    color: white;
-    width: 100%;
-    height: 100%;
-    border-radius: 8px
-    /* padding: 3rem; */
-    /* background-color: #5c459c; */
-  }
-  /*------------------ */
-  .total-spent{
-    padding: 0.8rem 0.5rem;
-    margin-bottom: 0.8rem;
-    border-radius: 8px;
-    background-color: var(--background-secondary);
-    border: 1px solid var(--background-light);
-  }
-  /* --------------------- */
-  .btn-modal{
-    width: 100%;
-    padding: .6rem;
-    border-radius: 8px;
-    border: 1px solid var(--navbar-bg);
-    color: var(--navbar-bg);
-    background-color: transparent;
-    cursor: pointer;
-  }
-  .btn-modal:hover{
-    background-color: #5c459c2d;
-  }
+/*^ Portfolio Stats */
+.portfolio-stats-container{
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  background-color: var(--background-secondary);
+  padding: 1.2rem;
+  margin: 0.5rem;
+}
+.portfolio-overview{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.4rem;
+}
+.portfolio-stats{
+  display: none;
+}
+
+
+
+
 
   /* For mobile phones: */
 @media only screen and (max-width: 768px) {
