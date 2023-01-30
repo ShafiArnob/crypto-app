@@ -8,29 +8,20 @@ import { MARKET_DATA } from '../../App';
 import './Portfolio.css'
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 
-const Assets = () => {
-  const [openModal, setopenModal] = useState(false)
-  const [portfolioData, setPortfolioData] =useState("")
+const Assets = ({refetch, portfolioData}) => {
   const [user, loading, error] = useAuthState(projectAuth);
+  const [openModal, setopenModal] = useState(false)
   const {marketDataList} = useContext(MARKET_DATA)
-  const [refetchPortfolio, setRefetchPortfolio] = useState('')
   
-  useEffect(()=>{
-    const getUser = async() =>{
-      if(user?.uid){
-        const response = await axios.get(`https://crypto-app-server.vercel.app/portfolio/${user.uid}`)
-        setPortfolioData(response.data)
-      }
-    }
-    getUser()
-  },[user, refetchPortfolio])
+  const {setRefetchPortfolio} = refetch
+
   
   const findCoinDataFromList = (coinId) =>{
     const coin = marketDataList.find(coin=>coin.id===coinId)
     return coin
   }
-
-  if(loading || !portfolioData){
+  // console.log(portfolioData);
+  if(loading || !Object.keys(portfolioData).length){
     return <p>Loading...</p>
   }
   return (
