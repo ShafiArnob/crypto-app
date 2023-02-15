@@ -86,7 +86,7 @@ const PortfolioStats = ({portfolio}) => {
         </div>
         
         <div className="">
-          <h1>{portfolioBalance(portfolio.portfolio)[3].toFixed(2)}%</h1>
+          <h1 className={`${portfolioBalance(portfolio.portfolio)[3].toFixed(2)>0?"green":"red" } }`}>{portfolioBalance(portfolio.portfolio)[3].toFixed(2)}%</h1>
         </div>
       </div>
 
@@ -105,16 +105,16 @@ const PortfolioStats = ({portfolio}) => {
 
           <div className="sub-stats">
             <div className="sub-stats-block">
+              <span>Best Performance</span>
               <div>
                 <h4>{bestPerformanceCoin.name || "None"} </h4>
               </div>
-              <span>Best Performance</span>
             </div>
             <div className="sub-stats-block">
+              <span>Worst Performance</span>
               <div>
                 <h4>{worstPerformanceCoin.name || "None"}</h4>
               </div>
-              <span>Worst Performance</span>
             </div>
           </div>
 

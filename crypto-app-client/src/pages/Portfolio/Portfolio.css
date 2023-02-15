@@ -8,6 +8,10 @@
   --text-color-light:rgba(145,145,159);
 
 }
+/* portfolio main */
+.portfolio-container{
+  margin: 1rem 0;
+}
 .assets{
   display: flex;
   flex-direction: column;
