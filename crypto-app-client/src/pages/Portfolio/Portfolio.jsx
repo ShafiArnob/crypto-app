@@ -24,7 +24,7 @@ const Portfolio = () => {
     return <Loading/>
   }
   return (
-    <div>
+    <div className='portfolio-container'>
       <div>
         {/* <h1>Portfolio</h1> */}
       </div>

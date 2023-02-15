@@ -262,7 +262,20 @@
   color: var(--text-color-light);
 }
 
-
+.btn-addasset{
+  margin: 1rem 1rem;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--navbar-bg);
+  border-radius: 10px;
+  background-color: transparent;
+  color: var(--navbar-bg);
+}
+.btn-addasset:hover{
+  background-color: var(--navbar-bg);
+  color: white;
+  cursor: pointer;
+}
 
 
 

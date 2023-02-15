@@ -54,7 +54,7 @@ const Assets = ({refetch, portfolioData}) => {
       ))
       }
       <hr className='asset-divide'/>
-      <button onClick={()=>setopenModal(!openModal)}>Add New Asset</button>
+      <button className="btn-addasset" onClick={()=>setopenModal(!openModal)}>Add New Asset</button>
       <AddAssetModal openModal={openModal} setopenModal={setopenModal} portfolioData={portfolioData} setRefetchPortfolio={setRefetchPortfolio}/>
     </div>
   )
