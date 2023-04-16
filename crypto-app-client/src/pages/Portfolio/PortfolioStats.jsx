@@ -24,6 +24,9 @@ const PortfolioStats = ({portfolio}) => {
   const portfolioBalance = (portfolio) => {
     let currentSum = 0
     let paidSum = 0
+    if(!portfolio){
+      return 0
+    }
     Object.keys(portfolio).map((item)=>{
       currentSum+= (portfolio[item].totalValue * findCoinDataFromList(item).current_price)
       paidSum +=  calculateSpentOnCoin(item)
@@ -73,7 +76,7 @@ const PortfolioStats = ({portfolio}) => {
     bestPerformanceCoin = findCoinDataFromList(calculateBestAndWorst(portfolio.portfolio)["best"])
     worstPerformanceCoin = findCoinDataFromList(calculateBestAndWorst(portfolio.portfolio)["worst"])
   }
-
+  console.log(portfolio.portfolio);
   return (
     <div className="portfolio-stats-container">
       
@@ -86,7 +89,7 @@ const PortfolioStats = ({portfolio}) => {
         </div>
         
         <div className="">
-          <h1 className={`${portfolioBalance(portfolio.portfolio)[3].toFixed(2)>0?"green":"red" } }`}>{portfolioBalance(portfolio.portfolio)[3].toFixed(2)}%</h1>
+          <h1 className={`${portfolioBalance(portfolio.portfolio)[3].toFixed(2)>0?"green":"red" } }`}>{portfolioBalance(portfolio.portfolio)[3].toFixed(2) || "0"}%</h1>
         </div>
       </div>
 
@@ -107,13 +110,13 @@ const PortfolioStats = ({portfolio}) => {
             <div className="sub-stats-block">
               <span>Best Performance</span>
               <div>
-                <h4>{bestPerformanceCoin.name || "None"} </h4>
+                <h4>{bestPerformanceCoin?.name || "None"} </h4>
               </div>
             </div>
             <div className="sub-stats-block">
               <span>Worst Performance</span>
               <div>
-                <h4>{worstPerformanceCoin.name || "None"}</h4>
+                <h4>{worstPerformanceCoin?.name || "None"}</h4>
               </div>
             </div>
           </div>

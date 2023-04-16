@@ -29,7 +29,7 @@ const Portfolio = () => {
         {/* <h1>Portfolio</h1> */}
       </div>
       <div>
-        {portfolioData && <PortfolioStats portfolio={portfolioData}/>}
+        {Object.keys(portfolioData.portfolio).length>=1 && <PortfolioStats portfolio={portfolioData}/>}
       </div>
       <div>
         {portfolioData && <Assets refetch={{refetchPortfolio, setRefetchPortfolio}} portfolioData={portfolioData}/>}
